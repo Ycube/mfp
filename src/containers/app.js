@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 
-import FoodInput from './FoodInput';
+import FoodForm from './FoodForm';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <FoodInput />
+        <FoodForm />
       </div>
     );
   }
