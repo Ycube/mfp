@@ -1,33 +1,44 @@
+var webpack = require('webpack')
+
 module.exports = {
-  entry: [
-    './src/index.js'
-  ],
+  entry: './src/index.js',
   output: {
     path: __dirname,
     publicPath: '/',
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
+    loaders: [
+    {
+      test: /\.js?$/,
+      loader: 'babel-loader',
       exclude: /node_modules/,
-      loader: 'babel',
-      query: {
-        presets: ['react', 'es2015', 'stage-1']
+      options: {
+        presets: [
+          ['es2015'],
+          ['react']
+        ]
       }
-    }],
-    rules: [{
+    },
+    {
         test: /\.scss$/,
         use: [{
             loader: "style-loader" // creates style nodes from JS strings
         }, {
-            loader: "css-loader" // translates CSS into CommonJS
+            loader: "css-loader",
+           options: {
+                  sourceMap: true
+              } // translates CSS into CommonJS
         }, {
-            loader: "sass-loader" // compiles Sass to CSS
+            loader: "sass-loader",
+            options: {
+                sourceMap: true
+            } // compiles Sass to CSS
         }]
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*','.js', '.jsx']
   },
   devServer: {
     historyApiFallback: true,
